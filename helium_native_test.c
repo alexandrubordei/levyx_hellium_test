@@ -7,14 +7,21 @@
 
 #define DATASTORE "he://.//dev/sdc"
 
-int main() {
+int main(int argc, char **argv) {
 
 	he_t he;
 	he_item item;
 
+	if(argc!=2)	
+	{
+		printf("Syntax: %s he://.//dev/nvme0n1\n",argv[0]);
+		return -1;
+	}
+
+	printf("opening %s\n",argv[1]);
 
 	//open helium datastore
-	he = he_open(DATASTORE, "DATASTORE", 0, NULL); 
+	he = he_open(argv[1], "DATASTORE", HE_O_CREATE|HE_O_VOLUME_CREATE, NULL); 
 	if (!he) {
 		he_perror("he_open"); return -1;
 	}
