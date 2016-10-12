@@ -1,2 +1,4 @@
 helium_native_test
+*.so
 *.o
+*.class
